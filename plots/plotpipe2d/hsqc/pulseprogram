@@ -1,0 +1,393 @@
+# 1 "/opt/topspin/exp/stan/nmr/lists/pp/user/trosy-fb.jll"
+# 1 "/opt/topspin/exp/stan/nmr/lists/pp/bits.jfy" 1
+;Avance3.incl
+;   for AV III
+;
+;avance-version (07/12/14)
+;
+;$CLASS=HighRes Incl
+;$COMMENT=
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+;$Id: Avance3.incl,v 1.6.2.2 2007/12/14 16:06:46 ber Exp $
+;Grad2.incl  -  include file for Gradient Spectroscopy
+;   for 1
+;
+;avance-version (07/01/17)
+;
+;$CLASS=HighRes Incl
+;$COMMENT=
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+define list<gradient> EA=<EA>
+
+define pulse PG1
+define pulse PG2
+define pulse PG3
+define pulse PG4
+define pulse PG5
+define pulse PG6
+define pulse PG7
+define pulse PG8
+define pulse PG9
+define pulse PG10
+define pulse PG11
+define pulse PG12
+define pulse PG13
+define pulse PG14
+define pulse PG15
+define pulse PG16
+define pulse PG17
+define pulse PG18
+define pulse PG20
+define pulse PG21
+define pulse PG22
+define pulse PG23
+define pulse PG24
+define pulse PG25
+define pulse PG26
+define pulse PG27
+define pulse PG28
+define pulse PG29
+define pulse PG30
+define pulse PG31
+
+
+;$Id: Grad2.incl,v 1.12 2007/01/22 14:22:35 ber Exp $
+# 1 "/opt/topspin/exp/stan/nmr/lists/pp/user/trosy-fb.jll" 2
+
+
+;written by abx 7/28/98
+;taken from trosy-ge.dw by Jordan 10/11/04
+;HN(CA)CB trosy for full transfer to Cb
+
+;p1 = 90 deg (10us) 1H pulse @pl1
+;p7 = 90 deg (50us) 15N pulse @pl7
+;p4 = selective 180 deg (23.7*2us) 13CA 
+;     pulse @pl4 (f4) and @pl67 (f5)
+
+;Gradient Pulses
+;p20    2m 
+;p21    300u
+;
+;gp0    (50,50,0) sine.50
+;gp1    (50,0,0)  sine.50
+;gp2    (50,0,0)  sine.50
+;gp3    (0,50,0)  sine.50
+
+"d26=p7-p1"
+"d10=10u"
+;"d0=105u - p4*2 -2u +in0*0.1"
+"d0=105u+p7*0.635-p4*2-2u"
+;"d0=105u+p7*0.635"
+"d11=50m"
+"d21=2.1m-p21"
+"d22=2.1m-p21-p2"
+"d23=2.1m-p2-14u"
+
+
+# 1 "mc_line 32 file /opt/topspin/exp/stan/nmr/lists/pp/user/trosy-fb.jll dc-measurement inserted automatically"
+    dccorr
+# 32 "/opt/topspin/exp/stan/nmr/lists/pp/user/trosy-fb.jll"
+1       ze
+        1m ;RESET
+2       d11 do:f2 do:f3
+        1.2m setnmr3^0 setnmr0^34^32^33 ctrlgrad 7 ;LOCK_ON
+3       3m ;DEUT_OFF
+4       3m ;LOCK_ON
+5       3m
+6       1m do:f3
+7       5u do:f2
+        10u pl4:f2
+        d1 setnmr3^0 setnmr0^34^32^33 ctrlgrad 7  ;LOCK_ON
+        1m setnmr3|0 setnmr0|34|32|33 ctrlgrad 0 ;LOCK_OFF
+        10u pl1:f1
+        10u pl7:f3
+;------- start 90-degree on hn -----------------------
+       (p1 ph0):f1
+        3u
+        p21:gp1
+        d21
+        300u
+       (d26 p1*2 ph0):f1 (p7*2 ph0):f3
+        d21
+        p21:gp1
+        303u
+       (p1 ph1):f1                ;INEPT to 15N
+        3u
+        3u pl12:f1
+       (p2 ph11:r):f1
+        6u
+        4u pl1:f1
+        p20:gp0
+        200u pl6:f2
+        10u pl4:f2
+ ;*****************************************       
+        if "l1==1" goto 88
+       (p7 ph17):f3
+        10u
+        p23:gp6
+        200u
+       (p7*2 ph17):f3 
+        p23:gp5
+        goto 89
+
+88     (p7 ph7):f3
+        10u
+        p23:gp5
+        200u
+       (p7*2 ph7):f3 
+        p23:gp6
+89      d0 
+       (p4*2 ph0):f2
+        4u
+       (p4*2:sp8 ph0):f2
+        d0
+        if "l1==1" goto 78
+       (p1 ph2):f1
+        3u
+        3u pl2:f1
+       (p2:sp0 ph12:r):f1
+        goto 79
+78     (p1 ph12):f1
+        3u
+        3u pl2:f1
+       (p2:sp0 ph2:r):f1
+79      6u gron2
+        d23 pl1:f1
+        2u groff
+       (d26 p1*2 ph0 d26):f1 (p7*2 ph0):f3
+        3u gron2
+        d23 pl2:f1
+        3u groff
+       (p2:sp1 ph0:r):f1
+        6u
+        2u pl1:f1
+        if "l1==1" goto 98
+       (p1 ph0):f1 (p7 ph4):f3     ;DOUBLE 90
+        goto 99
+98     (p1 ph0):f1 (p7 ph14):f3    ;DOUBLE 90
+99      5u
+        p21:gp3           
+        d22 pl2:f1
+       (p2 ph10:r):f1
+        3u
+        2u pl1:f1
+       (d26 p1*2 ph0):f1 (p7*2 ph0):f3
+        3u
+        2u pl2:f1
+       (p2 ph10:r):f1
+        5u pl1:f1
+        p21:gp3
+        d22
+       (p7 ph0):f3
+        p22:gp4 
+999     5u pl30:f2
+        5u setnmr3^0 setnmr0^34^32^33 ctrlgrad 7
+       go=2 ph31 ;cpd2:f2
+        100u do:f2 do:f3
+        1m ;LOCK_ON
+        d11 wr #0 if #0 zd
+        0.1m iu1
+        lo to 3 times 2
+        2m id0
+        1m ru1
+        lo to 4 times l3
+        10u rd0
+1m do:f2
+1m do:f3
+1m ;RESET
+1m
+exit    
+        
+ph0=0
+ph1=1          ;original setting1     ;check right phase for Boltzmann !!!!!
+ph2=3          ;original setting
+ph4=3          ;original setiing
+ph5=0
+ph15=1
+ph10=2
+ph11=0 
+ph12=1         ;original seting
+ph7=1 0 3 2 3 2 1 0
+ph17=1 2 3 0 3 0 1 2
+ph14=1         ;original setting
+ph31=1 2 3 0 3 0 1 2
+

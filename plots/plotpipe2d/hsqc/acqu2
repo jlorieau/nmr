@@ -1,0 +1,17 @@
+##TITLE= Parameter file, TOPSPIN		Version 2.1
+##JCAMPDX= 5.0
+##DATATYPE= Parameter Values
+##NPOINTS= 4	$$ modification sequence number
+##ORIGIN= Bruker BioSpin GmbH
+##OWNER= baxgrp
+$$ 2010-02-11 12:42:35.339 -0500  baxgrp@av900
+$$ /baxdisk/data/jlorieau/nmr/JL20100113_900_N-HA1fp-FL/103/acqu2
+$$ process /opt/topspin/prog/mod/dataserver
+##$BF1= 91.223567
+##$FnMODE= 0
+##$NUC1= <15N>
+##$O1= 10855.604473
+##$SFO1= 91.234422604473
+##$SW= 32.2375742250167
+##$TD= 640
+##END=

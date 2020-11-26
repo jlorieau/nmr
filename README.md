@@ -6,7 +6,7 @@ Pulse sequences, calculators, scripts and utilities for NMR from the [Lorieau gr
 
 Contains python scripts and other programs to calculate NMR observeables.
 
-## ``pulsesq/``
+## ``pulseseq/``
 
 Contains Bruker pulse sequence coded in-lab.
 

@@ -1,0 +1,17 @@
+##TITLE= Audit trail, TOPSPIN		Version 2.1
+##JCAMPDX= 5.01
+##ORIGIN= Bruker BioSpin GmbH
+##OWNER= baxgrp
+$$ /baxdisk/data/jlorieau/nmr/JL20100113_900_N-HA1fp-FL/103/pdata/1/auditp.txt
+##AUDIT TRAIL=  $$ (NUMBER, WHEN, WHO, WHERE, PROCESS, VERSION, WHAT)
+(   1,<2010-02-11 12:18:30.890 -0500>,<baxgrp>,<av900>,<go>,<TOPSPIN 2.1>,
+      <acquisition in progress>)
+(   2,<2010-02-11 12:29:20.494 -0500>,<baxgrp>,<av900>,<proc2d>,<TOPSPIN 2.1>,
+      <Start of raw data processing
+       xfb F2: TDeff = 2K SI = 4K BC_mod = 4 WDW = 4 SSB = 2 FT_mod = 6 PKNL = 1 STSR = 100 STSI = 1484 PHC0 = 148.7033 PHC1 = -411.8 F1: SI = 1K WDW = 3 SSB = 2 FT_mod = 6 PHC0 = 7.75 PHC1 = -12.8 MC2 = 5
+       data hash MD5: 1504 * 1K
+       8B C4 FC 4A 17 E7 14 52 E6 9C 6D E8 D6 D8 A0 66>)
+##END=
+
+$$ hash MD5
+$$ 68 D0 A0 00 A6 52 11 F4 8A 1B 40 74 55 94 1A 48
